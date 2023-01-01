@@ -11,4 +11,18 @@
 #
 
 # Modify default IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.30.1/g' package/base-files/files/bin/config_generate
+
+
+if [ -d feeds/kenzo/luci-theme-argon ]; then
+  rm -rf feeds/kenzo/luci-theme-argon*
+fi
+
+if [ -d feeds/luci/themes/luci-theme-argon ]; then
+  rm -rf feeds/luci/themes/luci-theme-argon*
+fi
+
+CURDIR=`pwd`
+cd feeds/luci/themes
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
+cd $CURDIR
